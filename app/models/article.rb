@@ -8,6 +8,18 @@ class Article < Content
   has_permalink :title, :scope => :site_id
   after_save    :save_assigned_sections
   after_update  :reset_comment_attributes
+  
+  # Turn any <embed></embed> tags into embedabble feature
+  before_save :create_embeddables
+  
+  def create_embeddables
+    self.body.scan(/<embedit>.+<\/embedit>/).each do |embed|
+      url = EmbeditRuby.new(embed.scan(/<embedit>(.+)<\/embedit>/).to_s)
+      if url.valid? == 'true'
+        self.body.gsub!(embed, "<center>#{url.html}</center>")
+      end
+    end
+  end
 
   acts_as_versioned :if_changed => [:title, :body, :excerpt], :limit => 5 do
     def self.included(base)

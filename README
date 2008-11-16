@@ -1,3 +1,13 @@
+= Embedit Support
+
+I've quickly added Embedit support in Mephisto. All you need is to surround your url with 
+
+<embedit> --Url Goes Here-- </embedit>
+
+If you don't know what Embedit is, go check out http://embedit.me.
+
+
+
 = Installation
 
 See public/install.html for setup instructions.
