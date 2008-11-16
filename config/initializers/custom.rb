@@ -38,3 +38,5 @@ UserMailer.mail_from = 'webmaster@localhost'
 #   Mephisto::Routing.redirect \
 #     'old/*' => 'new/$1',
 #     'article/?/?/?' => 'new/$2/$1/$3'
+
+require 'lib/embedit_ruby'
